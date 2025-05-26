@@ -26,7 +26,7 @@ include '../include/config.php';
             <div class="card mb-0">
               <div class="card-body">
                 <a href="../index.php" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/logo.png" alt="">
+                  <img src="../assets/images/logos/logo1.png" alt="">
                 </a>
                 <p class="text-center">Login Here</p>
                 
