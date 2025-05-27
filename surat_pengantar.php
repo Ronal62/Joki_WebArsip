@@ -2,43 +2,10 @@
 include 'header.php'; 
 include 'include/config.php';
 
-// if (!isset($_SESSION['user_type'])) {
-//     header("Location: login.php");
-//     exit();
-// }
-
-// Cek role admin
-// if ($_SESSION['user_type'] !== 'admin') {
-//     header("Location: unauthorized.php");
-//     exit();
-// }
-
-// if (!isset($_SESSION['user_type'])) {
-//     header("Location: login.php");
-//     exit();
-// }
-
-// // Cek role admin
-// if ($_SESSION['user_type'] !== 'admin') {
-//     header("Location: unauthorized.php");
-//     exit();
-// }
-
-
-// if (isset($_SESSION['pesan'])) {
-//     $pesan = explode('|', $_SESSION['pesan']);
-//     $tipe = $pesan[0];
-//     $isi = $pesan[1] ?? '';
-    
-//     echo '<div class="alert alert-'.$tipe.'">'.$isi.'</div>';
-//     unset($_SESSION['pesan']);
-// }
-
-// KOREKSI 1: Pisahkan variabel kategori dan labels
 $is_admin = ($_SESSION['user_type'] == 'admin');
 $is_staf = ($_SESSION['user_type'] == 'staf');
 
-$current_kategori = 'surat_pengantar';
+$current_kategori = 'surat_masuk';
 
 $kategori_labels = [
     'surat_masuk' => 'Surat Masuk',
@@ -50,7 +17,6 @@ $kategori_labels = [
 ];
 
 try {
-    // KOREKSI 2: Gunakan variabel yang benar untuk query
     $stmt = $conn->prepare("SELECT * FROM arsip WHERE kategori = ? ORDER BY waktu_upload DESC");
     $stmt->bind_param("s", $current_kategori);
     $stmt->execute();
@@ -58,13 +24,9 @@ try {
 } catch(Exception $e) {
     die("Error: " . $e->getMessage());
 }
-
-// KOREKSI 3: Hapus kode download dari file ini
-// Pindahkan kode download ke file terpisah (download.php)
 ?>
-<div class="body-wrapper">
-    <!-- Header tetap sama -->
 
+<div class="body-wrapper">
     <div class="body-wrapper-inner">
         <div class="container-fluid">
             <div class="row">
@@ -74,33 +36,28 @@ try {
                             <div class="d-md-flex align-items-center">
                                 <div>
                                     <h4 class="card-title">Surat Table</h4>
-                                    <p class="card-subtitle">
-                                        Data Surat
-                                    </p>
+                                    <p class="card-subtitle">Data Surat</p>
                                 </div>
                                 <div class="ms-auto mt-3 mt-md-0">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Cari Surat...">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Surat...">
                                         <span class="input-group-text"><i class="ti ti-search"></i></span>
                                     </div>
+                                    <small class="text-muted" style="font-size: 12px;">Pencarian berdasarkan <strong>kode surat</strong> atau <strong>nama surat</strong></small>
                                 </div>
                             </div>
-                            
+
                             <div class="table-responsive mt-4">
-                                <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+                                <table class="table mb-0 text-nowrap varient-table align-middle fs-3" id="suratTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="px-0 text-muted">
-                                                No
-                                            </th>
-                                            <th scope="col" class="px-0 text-muted">Kode</th>
-                                            <th scope="col" class="px-0 text-muted">Nama File</th>
-                                            <th scope="col" class="px-0 text-muted">Kategori</th>
-                                            <th scope="col" class="px-0 text-muted">Keterangan</th>
-                                            <th scope="col" class="px-0 text-muted">Waktu Upload</th>
-                                            <th scope="col" class="px-0 text-muted">
-                                                Aksi
-                                            </th>
+                                            <th>No</th>
+                                            <th>Kode Surat</th>
+                                            <th>Nama Surat</th>
+                                            <th>Kategori</th>
+                                            <th>Keterangan</th>
+                                            <th>Waktu Upload</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,19 +72,14 @@ try {
                                                 <td><?= htmlspecialchars($row['keterangan']) ?></td>
                                                 <td><?= date('d/m/Y H:i', strtotime($row['waktu_upload'])) ?></td>
                                                 <td>
-                                                    <a href="download.php?id=<?= $row['id'] ?>" 
-                                                       class="badge bg-warning">
-                                                       <i class="ti ti-download"></i> Download
+                                                    <a href="download.php?id=<?= $row['id'] ?>" class="badge bg-warning">
+                                                        <i class="ti ti-download"></i> Download
                                                     </a>
-                                                    <a href="preview.php?id=<?= $row['id'] ?>" 
-                                                       class="badge bg-info" 
-                                                       target="_blank">
-                                                       <i class="ti ti-eye"></i> Preview
+                                                    <a href="preview.php?id=<?= $row['id'] ?>" class="badge bg-info" target="_blank">
+                                                        <i class="ti ti-eye"></i> Preview
                                                     </a>
                                                     <?php if ($is_admin) : ?>
-                                                    <a href="delete.php?id=<?= $row['id'] ?>" 
-                                                        class="badge bg-danger" 
-                                                        onclick="return confirm('Yakin ingin menghapus <?= htmlspecialchars($row['nama_arsip']) ?>?')">
+                                                    <a href="delete.php?id=<?= $row['id'] ?>" class="badge bg-danger" onclick="return confirm('Yakin ingin menghapus <?= htmlspecialchars($row['nama_arsip']) ?>?')">
                                                         <i class="ti ti-trash"></i> Hapus
                                                     </a>
                                                     <?php endif; ?>
@@ -142,6 +94,7 @@ try {
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -149,5 +102,24 @@ try {
         </div>
     </div>
 </div>
+
+<!-- Script pencarian -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    var input = this.value.toLowerCase();
+    var rows = document.querySelectorAll("#suratTable tbody tr");
+
+    rows.forEach(function (row) {
+        var kode = row.cells[1].textContent.toLowerCase();
+        var nama = row.cells[2].textContent.toLowerCase();
+
+        if (kode.includes(input) || nama.includes(input)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
+</script>
 
 <?php include 'footer.php'; ?>

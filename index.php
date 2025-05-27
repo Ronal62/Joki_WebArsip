@@ -247,6 +247,32 @@
             background: #1da851;
         }
 
+        .stat-card {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            margin-bottom: 45px;
+            width: 400px;
+            display: flex; /* tambahkan ini */
+            align-items: center; /* agar icon dan teks sejajar */
+            gap: 10px; /* beri jarak antara icon dan teks */
+        }
+
+
+        .alamat-text {
+            width: 100%;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .stat-card .alamat-text {
+            display: flex;
+        }
+
+
+
         /* Enhanced Media Query for Mobile Responsiveness */
         @media (max-width: 768px) {
             body {
@@ -402,28 +428,37 @@
                     Pusat informasi Kearsipan Kelurahan Ketegan
                 </div>
                 <div class="button">
-                    <a href="persuratan_online.php" class="messages-btn" target="_blank"><i class="fas fa-envelope"></i>Persuratan Online</a>
+                    <a href="persuratan_online.php" class="messages-btn" target="_blank"><i class="fas fa-envelope"></i>Mekanisme Pelayanan</a>
                 </div>
             </div>
             <img src="./assets/images/logos/logo.png" alt="Logo" class="logo">
         </div>
         <div class="content-wrapper">
-            <div class="stats">
-                <div class="stat-card">
+            <div class="stats d-flex">
+                <!-- <div class="stat-card">
                     <i class="fas fa-users"></i>
                     <div class="stat-value">12,289</div>
                     <div class="stat-label">Total Jiwa</div>
+                </div> -->
+                <div class="stat-card align-items-center">
+                    <i class="fa-solid fa-location-dot me-2 d-flex"></i>
+                    <div class="d-flex"></div>
+                    <div class="alamat-text">
+                        Jl. Satria ctn 24 RT 08 RW 02 Ketegan Kec. Taman, Sidoarjo, Jawa Timur, Indonesia 61257
+                    </div>
+                    <i class="fa-solid fa-envelope me-3 d-flex"></i>
+                    <div class="d-flex"></div>
+                    <div class="email-text">
+                        siketan.arsip@gmail.com
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-home"></i>
-                    <div class="stat-value">20</div>
-                    <div class="stat-label">Jumlah Desa</div>
-                </div>
-                <div class="stat-card">
+                
+
+                <!-- <div class="stat-card">
                     <i class="fas fa-id-card"></i>
                     <div class="stat-value">500</div>
                     <div class="stat-label">Jumlah KK</div>
-                </div>
+                </div> -->
             </div>
             <div class="schedule">
                 <div class="schedule-title">Jadwal Kerja Kelurahan Ketegan</div>

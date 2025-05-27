@@ -19,7 +19,7 @@ try {
     // Query data user berdasarkan session login
     $stmt = $conn->prepare("SELECT * FROM $table WHERE id = ?");
     $stmt->bind_param("i", $user_id);
-    
+
     if (!$stmt->execute()) {
         throw new Exception("Gagal mengambil data pengguna");
     }
@@ -36,7 +36,6 @@ try {
     header("Location: profile.php");
     exit();
 }
-
 ?>
 
 <div class="body-wrapper">
@@ -49,32 +48,32 @@ try {
                             <h4 class="mb-0 text-white">Profil Pengguna</h4>
                         </div>
                         <div class="card-body">
-                            <!-- Tampilkan pesan -->
-                            <?php if(isset($_SESSION['success'])): ?>
-                                <div class="alert alert-success"><?= $_SESSION['success']; unset($_SESSION['success']); ?></div>
-                            <?php endif; ?>
-
-                            <?php if(isset($_SESSION['error'])): ?>
-                                <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
-                            <?php endif; ?>
 
                             <!-- Form Profil -->
                             <form action="profile.php" method="POST" enctype="multipart/form-data">
                                 <div class="text-center mb-4">
                                     <?php
-                                    $foto = $user['foto'] ?? 'default.jpg';
-                                    $foto_path = "./assets/images/profile/" . $foto;
-
-                                    // Gunakan default jika file tidak ada
-                                    if (!file_exists($foto_path) || empty($foto)) {
-                                        $foto = 'default.jpg';
-                                    }
+                                    $folder = ($user_type === 'admin') ? 'admin' : 'staf';
+                                    
+                                    // Path absolut ke file untuk pengecekan
+                                    $file_path = __DIR__ . "/../uploads/{$folder}/" . $user['foto'];
+                                    
+                                    // Debug: echo "<!-- File path: $file_path -->";
+                                    
+                                    // Tentukan nama file foto
+                                    $fotoFile = (!empty($user['foto']) && file_exists($file_path))
+                                        ? $user['foto']
+                                        : 'default.jpg';
+                                    
+                                    // Path relatif untuk browser
+                                    $fotoUrl = "../uploads/{$folder}/" . htmlspecialchars($fotoFile);
                                     ?>
-                                    <img src="./assets/images/profile/<?= htmlspecialchars($foto) ?>" 
-                                        class="rounded-circle mb-3" 
-                                        width="150" 
-                                        height="150"
-                                        alt="Foto Profil <?= htmlspecialchars($user['username']) ?>">
+                                    
+                                    <img src="<?= $fotoUrl ?>" 
+                                         class="rounded-circle mb-3" 
+                                         width="150" 
+                                         height="150"
+                                         alt="Foto Profil <?= htmlspecialchars($user['username']) ?>">
                                 </div>
 
                                 <div class="mb-3">
@@ -105,3 +104,14 @@ try {
                                         </a>
                                     </div>
                                 </div>
+
+                            </form>
+                        </div>
+                    </div>              
+                </div>               
+            </div>                       
+        </div>
+    </div>                        
+</div>
+
+<?php include 'footer.php'; ?>
