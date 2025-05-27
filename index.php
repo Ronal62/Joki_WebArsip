@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('./assets/images/backgrounds/page.png'); /* Background image */
+            background-image: url('./assets/images/backgrounds/page.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -95,10 +94,6 @@
             background: #e0f7ea;
         }
 
-        .button i {
-            margin-right: 5px;
-        }
-
         .content-wrapper {
             display: flex;
             justify-content: space-between;
@@ -108,10 +103,10 @@
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             flex: 1;
-            margin-top: 55px;
+            margin-top: 20px;
         }
 
         .stat-card {
@@ -120,7 +115,11 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease-in-out;
-            margin-bottom: 45px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .stat-card:hover {
@@ -128,25 +127,18 @@
         }
 
         .stat-card i {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 24px;
             background: linear-gradient(45deg, #28a745, #25d366);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
         }
 
-        .stat-value {
-            font-weight: bold;
-            font-size: 20px;
+        .stat-text {
+            font-size: 14px;
             color: #333;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
+            flex: 1;
+            text-align: left;
         }
 
         .schedule {
@@ -158,7 +150,8 @@
             flex-direction: column;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease-in-out;
-            max-width: 250px;
+            max-width: 100%;
+            width: 100%;
         }
 
         .schedule:hover {
@@ -177,14 +170,13 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            text-align: left;
         }
 
         .schedule-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px;
+            gap: 10px;
+            padding: 10px;
             background: #f8f9fa;
             border-radius: 8px;
             transition: background 0.2s ease;
@@ -200,25 +192,13 @@
         }
 
         .schedule-item-text {
-            font-size: 12px;
-            color: #000;
-            text-align: center;
+            font-size: 14px;
+            color: #333;
             flex: 1;
+            text-align: left;
         }
 
         .schedule-item-text span {
-            font-weight: bold;
-            color: #28a745;
-        }
-
-        .schedule-item-text2 {
-            font-size: 12px;
-            color: #333;
-            text-align: left;
-            flex: 1;
-        }
-
-        .schedule-item-text2 span {
             font-weight: bold;
             color: #28a745;
         }
@@ -247,33 +227,6 @@
             background: #1da851;
         }
 
-        .stat-card {
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-            margin-bottom: 45px;
-            width: 400px;
-            display: flex; /* tambahkan ini */
-            align-items: center; /* agar icon dan teks sejajar */
-            gap: 10px; /* beri jarak antara icon dan teks */
-        }
-
-
-        .alamat-text {
-            width: 100%;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .stat-card .alamat-text {
-            display: flex;
-        }
-
-
-
-        /* Enhanced Media Query for Mobile Responsiveness */
         @media (max-width: 768px) {
             body {
                 background-attachment: scroll;
@@ -294,13 +247,13 @@
                 text-align: center;
                 width: 100%;
                 margin-bottom: 10px;
-                order: 2; /* Move text-wrapper below logo */
+                order: 2;
             }
 
             .logo {
                 width: 120px;
                 max-width: 80%;
-                order: 1; /* Move logo to the top */
+                order: 1;
             }
 
             .title {
@@ -341,19 +294,14 @@
             }
 
             .stat-card i {
-                font-size: 24px;
+                font-size: 20px;
             }
 
-            .stat-value {
-                font-size: 18px;
-            }
-
-            .stat-label {
-                font-size: 10px;
+            .stat-text {
+                font-size: 12px;
             }
 
             .schedule {
-                max-width: 100%;
                 padding: 10px;
                 margin-top: 20px;
             }
@@ -366,9 +314,8 @@
                 font-size: 16px;
             }
 
-            .schedule-item-text,
-            .schedule-item-text2 {
-                font-size: 11px;
+            .schedule-item-text {
+                font-size: 12px;
             }
 
             .messages-btn {
@@ -377,7 +324,6 @@
             }
         }
 
-        /* Additional Media Query for Very Small Screens */
         @media (max-width: 480px) {
             .title {
                 font-size: 18px;
@@ -397,15 +343,11 @@
             }
 
             .stat-card i {
-                font-size: 20px;
+                font-size: 18px;
             }
 
-            .stat-value {
-                font-size: 16px;
-            }
-
-            .stat-label {
-                font-size: 9px;
+            .stat-text {
+                font-size: 11px;
             }
 
             .schedule-title {
@@ -414,7 +356,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="header">
@@ -434,31 +375,19 @@
             <img src="./assets/images/logos/logo.png" alt="Logo" class="logo">
         </div>
         <div class="content-wrapper">
-            <div class="stats d-flex">
-                <!-- <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <div class="stat-value">12,289</div>
-                    <div class="stat-label">Total Jiwa</div>
-                </div> -->
-                <div class="stat-card align-items-center">
-                    <i class="fa-solid fa-location-dot me-2 d-flex"></i>
-                    <div class="d-flex"></div>
-                    <div class="alamat-text">
+            <div class="stats">
+                <div class="stat-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div class="stat-text">
                         Jl. Satria ctn 24 RT 08 RW 02 Ketegan Kec. Taman, Sidoarjo, Jawa Timur, Indonesia 61257
                     </div>
-                    <i class="fa-solid fa-envelope me-3 d-flex"></i>
-                    <div class="d-flex"></div>
-                    <div class="email-text">
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="stat-text">
                         siketan.arsip@gmail.com
                     </div>
                 </div>
-                
-
-                <!-- <div class="stat-card">
-                    <i class="fas fa-id-card"></i>
-                    <div class="stat-value">500</div>
-                    <div class="stat-label">Jumlah KK</div>
-                </div> -->
             </div>
             <div class="schedule">
                 <div class="schedule-title">Jadwal Kerja Kelurahan Ketegan</div>
@@ -468,7 +397,8 @@
                         <div class="schedule-item-text"><span>08:00 - 16:00</span></div>
                     </div>
                     <div class="schedule-item">
-                        <div class="schedule-item-text2">Libur: <span>Sabtu - Minggu</span></div>
+                        <i class="fas fa-calendar-times"></i>
+                        <div class="schedule-item-text">Libur: <span>Sabtu - Minggu</span></div>
                     </div>
                 </div>
                 <div class="messages-btn-wrapper">
@@ -480,5 +410,4 @@
         </div>
     </div>
 </body>
-
 </html>
