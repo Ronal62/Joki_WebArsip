@@ -142,3 +142,15 @@ LOGIN SUCCESS: {
     "user_type": "admin"
 }
 
+LOGIN SUCCESS: {
+    "username": "adminku",
+    "timestamp": "2025-05-28 11:38:25",
+    "ip_address": "::1",
+    "found_in": "admin",
+    "user_id": 1,
+    "hash_from_db": "$2y$10$fkgyxmvArKB..mZqaRcQYO4...",
+    "password_verify": "SUCCESS",
+    "status": "SUCCESS",
+    "user_type": "admin"
+}
+

@@ -28,6 +28,7 @@ if (isset($_SESSION['error'])) {
     <link rel="shortcut icon" type="image/png" href="assets/images/logos/logo.png" />
     <link rel="stylesheet" href="assets/css/styles.min.css" />
     <script src="assets/js/apexcharts.min.js"></script>
+    
 </head>
 
 <body>
@@ -41,6 +42,7 @@ if (isset($_SESSION['error'])) {
                 <a class="d-flex justify-content-center" href="dashboard.php">
                     <img src="assets/images/logos/logo.png" alt="" width="40">
                 </a>
+                
             </div>
 
             <div class="d-lg-flex align-items-center gap-2">
