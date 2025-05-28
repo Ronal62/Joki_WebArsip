@@ -102,9 +102,6 @@
         }
 
         .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
             flex: 1;
             margin-top: 20px;
         }
@@ -116,10 +113,17 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease-in-out;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 15px;
             width: 100%;
             box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .stat-card:hover {
@@ -284,13 +288,11 @@
             }
 
             .stats {
-                grid-template-columns: 1fr;
                 margin-top: 20px;
             }
 
             .stat-card {
                 padding: 10px;
-                margin-bottom: 20px;
             }
 
             .stat-card i {
@@ -377,15 +379,17 @@
         <div class="content-wrapper">
             <div class="stats">
                 <div class="stat-card">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div class="stat-text">
-                        Jl. Satria ctn 24 RT 08 RW 02 Ketegan Kec. Taman, Sidoarjo, Jawa Timur, Indonesia 61257
+                    <div class="stat-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="stat-text">
+                            Jl. Satria ctn 24 RT 08 RW 02 Ketegan Kec. Taman, Sidoarjo, Jawa Timur, Indonesia 61257
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fa-solid fa-envelope"></i>
-                    <div class="stat-text">
-                        siketan.arsip@gmail.com
+                    <div class="stat-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="stat-text">
+                            siketan.arsip@gmail.com
+                        </div>
                     </div>
                 </div>
             </div>
