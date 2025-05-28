@@ -1,12 +1,12 @@
 <?php
-session_start(); // WAJIB DI AKTIFKAN
+
 include 'include/config.php';
 include 'header.php';
 
 // Validasi sesi login
 if (!isset($_SESSION['user_type'], $_SESSION['user_id'])) {
     $_SESSION['error'] = "Silakan login terlebih dahulu";
-    header("Location: ../auth/login.php");
+    header("Location: ../auth/login.php");  
     exit();
 }
 
